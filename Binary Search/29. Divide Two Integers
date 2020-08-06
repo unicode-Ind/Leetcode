@@ -1,0 +1,47 @@
+https://www.youtube.com/watch?v=bdxJHWIyyqI
+https://leetcode.com/problems/divide-two-integers/
+
+
+
+
+
+
+
+
+FROM dISCUSSIONS
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+		// just for small names
+        int dvd = dividend;
+        int dvs = divisor;
+        
+		//special case handled
+        if(dvd == INT_MIN){
+            if(dvs == 1)
+                return INT_MIN;
+            if(dvs == -1)
+                return INT_MAX;
+        }
+        
+		//both converted to negative, because INT_MIN is greater than INT_MAX in magnitude
+		//In cases where dividend is INT_MIN, converting both numbers to positive pose a problem, so better this way.
+		//NOTE: Compaision signs are reversed everywhere because we are dealing with negative numbers, look cautiously.
+        dvd = -abs(dvd);
+        dvs = -abs(dvs);
+        int q = 0;
+        while(dvd<=dvs){
+            int dvsTemp = dvs, m = 1;
+            while(dvsTemp>=dvd-dvsTemp){
+                dvsTemp+=dvsTemp;
+                m+=m;
+            }
+            dvd-=dvsTemp;
+            q+=m;
+        }
+        
+		// take care of the sign from original numbers.
+        bool neg = (dividend<0 && divisor>0) || (dividend>0 && divisor<0) ;
+        return neg?-q:q;
+    }
+};
