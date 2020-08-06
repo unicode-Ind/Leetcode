@@ -34,6 +34,11 @@ public:
                 
         }
         
+        return low;
+        
+        /*
+        
+        //for postion as element not found
         low=0;
         high=nums.size()-1;
         
@@ -53,6 +58,15 @@ public:
         }
         
         return pos;
+        */
+        
+        
+        //alternatively to return position
+        return low;
+        
+        //how!!!!
+        //we have to return pos of just greater
+        //and low have this
         
     }
 };
